@@ -32,8 +32,18 @@ router.put("/api/workouts/:id", function (req, res){
     })
 })
 
+// router.get("/api/workouts/range", function(req, res){
+//     db.Workout.find({})
+//     .then(function (workouts) {
+//         res.json(workouts)
+//     })
+//     .catch(function (err) {
+//         console.log(err)
+//     })
+// })
+
 router.get("/api/workouts/range", function(req, res){
-    db.Workout.find({})
+    db.Workout.aggregate([{$addFields: { totalDuration: { $sum: '$exercises.duration' } }}])
     .then(function (workouts) {
         res.json(workouts)
     })
@@ -41,7 +51,6 @@ router.get("/api/workouts/range", function(req, res){
         console.log(err)
     })
 })
-
 
 
 module.exports = router;
