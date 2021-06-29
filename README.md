@@ -1,6 +1,6 @@
 # Fitness tracker
 
-## Discription 
+## Description 
 
 This is simple application that allows users to keep track of their workout. 
 
